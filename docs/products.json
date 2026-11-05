@@ -1,0 +1,15 @@
+{
+  "shop": "Moda Do'kon",
+  "delivery": {"fee": 20000, "free_from": 300000},
+  "categories": ["Kiyim", "Oyoq kiyim"],
+  "products": [
+    {"id": "p1", "name": "Oversize futbolka", "cat": "Kiyim", "price": 120000, "emoji": "👕", "sizes": ["S", "M", "L", "XL"], "colors": ["Qora", "Oq", "Yashil"], "desc": "Yumshoq paxta, erkin kesim."},
+    {"id": "p2", "name": "Kapyushonli hudi", "cat": "Kiyim", "price": 220000, "emoji": "🧥", "sizes": ["S", "M", "L", "XL"], "colors": ["Qora", "Kulrang"], "desc": "Issiq va qulay, kundalik kiyim."},
+    {"id": "p3", "name": "Klassik jinsi shim", "cat": "Kiyim", "price": 260000, "emoji": "👖", "sizes": ["28", "30", "32", "34"], "colors": ["Ko'k", "Qora"], "desc": "To'g'ri kesim, mustahkam mato."},
+    {"id": "p4", "name": "Qishki kurtka", "cat": "Kiyim", "price": 690000, "emoji": "🧥", "sizes": ["M", "L", "XL"], "colors": ["Qora", "Xaki"], "desc": "Sovuqqa chidamli, suv o'tkazmaydi."},
+    {"id": "p5", "name": "Sport krossovka", "cat": "Oyoq kiyim", "price": 480000, "emoji": "👟", "sizes": ["39", "40", "41", "42", "43"], "colors": ["Oq", "Qora"], "desc": "Yengil va qulay, har kuni kiyishga."},
+    {"id": "p6", "name": "Charm tufli", "cat": "Oyoq kiyim", "price": 550000, "emoji": "👞", "sizes": ["40", "41", "42", "43"], "colors": ["Qora", "Jigarrang"], "desc": "Klassik uslub, tabiiy charm."},
+    {"id": "p7", "name": "Qishki botinka", "cat": "Oyoq kiyim", "price": 620000, "emoji": "🥾", "sizes": ["40", "41", "42", "43"], "colors": ["Qora", "Jigarrang"], "desc": "Issiq astarli, sirpanmaydigan taglik."},
+    {"id": "p8", "name": "Yozgi shippak", "cat": "Oyoq kiyim", "price": 90000, "emoji": "🩴", "sizes": ["39", "40", "41", "42"], "colors": ["Qora", "Ko'k"], "desc": "Yengil, uy va plyaj uchun."}
+  ]
+}
