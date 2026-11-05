@@ -15,6 +15,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from dotenv import load_dotenv
 
 import db
+import reports
 
 load_dotenv()
 router = Router()
@@ -216,6 +217,7 @@ async def main() -> None:
         raise SystemExit("ADMIN_IDS topilmadi: buyurtmalar kimga borishini .env da ko'rsating.")
     db.init()
     dp = Dispatcher()
+    dp.include_router(reports.router)
     dp.include_router(router)
     await dp.start_polling(Bot(token=token))
 
