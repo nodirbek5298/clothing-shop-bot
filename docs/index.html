@@ -14,22 +14,27 @@
 body{font:400 15px/1.45 'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;padding:16px 16px 60px}
 .glass{background:var(--sf);border:1px solid var(--line);border-radius:18px}
 header,.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:12px}
+.hr{display:flex;gap:8px}
 h1{font-size:20px;font-weight:600;letter-spacing:-.01em}h2{font-size:18px;font-weight:600}
 .muted{color:var(--mut);font-size:13px}
 .promo{background:var(--sf);border-radius:12px;padding:10px 14px;font-size:13px;color:var(--ac);font-weight:500;margin-bottom:14px}
 button{font:inherit;cursor:pointer;color:var(--tx);transition:transform .1s,background .2s}button:active{transform:scale(.97)}
 .ic{position:relative;width:44px;height:44px;border-radius:50%;font-size:18px;background:var(--sf);border:1px solid var(--line)}
+.ic.txt{font-size:12px;font-weight:600}
 .ic i{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:10px;background:var(--ac);color:#fff;font:600 11px/20px 'Poppins',sans-serif;font-style:normal;text-align:center}
+.bar2{display:flex;gap:8px;margin-bottom:12px}.bar2 .t{margin:0}.bar2 input{flex:1;min-width:0}.bar2 select{width:128px}
 .chips{display:flex;gap:8px;overflow-x:auto;margin:0 0 16px;padding-bottom:4px}.chips.wrap{flex-wrap:wrap;margin:8px 0 14px}
 .chip{flex:none;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:8px 16px;font-size:14px}
 .chip.on{background:var(--tx);border-color:var(--tx);color:#fff;font-weight:500}
 .chips.wrap .chip{border-radius:12px;min-width:48px;text-align:center}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px}
-.pc{cursor:pointer;animation:fade .4s ease}
+.pc{cursor:pointer;animation:fade .4s ease}.pc.so{opacity:.5}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}}
-.pic{height:170px;border-radius:16px;display:grid;place-items:center;font-size:56px;background:var(--sf);overflow:hidden}
+.pic{position:relative;height:170px;border-radius:16px;display:grid;place-items:center;font-size:56px;background:var(--sf);overflow:hidden}
 .pic.big{height:200px;font-size:84px;margin-bottom:14px}.pic img{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;top:8px;left:8px;background:var(--tx);color:#fff;font:600 11px/1 'Poppins',sans-serif;padding:5px 8px;border-radius:8px}.tag.ac{background:var(--ac)}.tag.dk{background:#6b655d}
 .pc b{display:block;margin-top:8px;font-size:14px;font-weight:500}.pc span{font-size:14px;font-weight:600}
+s{color:var(--mut);font-weight:400;font-size:12px}
 .ov{position:fixed;inset:0;background:rgba(20,20,20,.38);display:flex;align-items:flex-end;z-index:5}
 .sh{width:100%;max-height:88vh;overflow:auto;padding:20px;border-radius:26px 26px 0 0;background:var(--bg);box-shadow:0 -10px 40px rgba(0,0,0,.12);animation:up .3s ease}
 @keyframes up{from{transform:translateY(40px);opacity:0}}
@@ -44,8 +49,8 @@ label.l{display:block;color:var(--mut);font-size:12px;margin-top:12px}
 .it .qty{margin:0;gap:8px}.it .qty button{width:30px;height:30px;font-size:15px}
 .tr{display:flex;justify-content:space-between;padding:4px 0}.tr.t{font-weight:600;font-size:17px;border-top:1px solid var(--line);margin-top:6px;padding-top:10px}
 .free{color:var(--ac);font-weight:500}
-input.t,textarea.t{width:100%;margin-bottom:10px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:var(--tx);font:inherit;outline:0}
-input.t:focus,textarea.t:focus{border-color:var(--tx)}
+input.t,textarea.t,select.t{width:100%;margin-bottom:10px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:var(--tx);font:inherit;outline:0}
+input.t:focus,textarea.t:focus,select.t:focus{border-color:var(--tx)}
 .pay{display:flex;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer;background:var(--bg)}
 .pay:has(input:checked){border-color:var(--tx);background:var(--sf)}
 .pay input{accent-color:#141414}
@@ -53,81 +58,128 @@ input.t:focus,textarea.t:focus{border-color:var(--tx)}
 </style>
 </head>
 <body>
-<header><h1 id="shop">Do'kon</h1><button id="cartb" class="ic">🛒<i id="cnt" hidden>0</i></button></header>
+<header><h1 id="shop"></h1><div class="hr"><button id="lang" class="ic txt">RU</button><button id="cartb" class="ic">🛒<i id="cnt" hidden>0</i></button></div></header>
 <div id="promo" class="promo" hidden></div>
+<div class="bar2">
+  <input id="q" class="t" data-p="search">
+  <select id="sort" class="t"><option value="def" data-i="s_def"></option><option value="asc" data-i="s_asc"></option><option value="desc" data-i="s_desc"></option></select>
+</div>
 <div id="cats" class="chips"></div>
 <div id="grid" class="grid"></div>
 
 <div id="sheet" class="ov" hidden><div id="sh" class="sh"></div></div>
 
 <div id="cart" class="pg" hidden>
-  <div class="top"><button class="ic" id="back">←</button><h1>Savat</h1><span style="width:44px"></span></div>
+  <div class="top"><button class="ic" id="back">←</button><h1 data-i="cart"></h1><span style="width:44px"></span></div>
   <div id="items" class="glass box"></div>
   <div id="form">
     <div id="tot" class="glass box"></div>
     <div class="glass box">
-      <input id="fn" class="t" placeholder="Ismingiz" maxlength="60">
-      <input id="fp" class="t" type="tel" placeholder="Telefon: +998 90 123 45 67" maxlength="20">
-      <input id="fa" class="t" placeholder="Manzil (shahar, ko'cha, uy)" maxlength="200">
-      <textarea id="fnote" class="t" rows="2" placeholder="Izoh (ixtiyoriy)" maxlength="200"></textarea>
-      <label class="pay"><input type="radio" name="pay" value="cash" checked><span>💵 Naqd (yetkazganda)</span></label>
-      <label class="pay"><input type="radio" name="pay" value="card"><span>💳 Kartaga o'tkazma (chek yuborasiz)</span></label>
+      <input id="fn" class="t" data-p="name" maxlength="60">
+      <input id="fp" class="t" type="tel" placeholder="+998 90 123 45 67" maxlength="20">
+      <input id="fa" class="t" data-p="addr" maxlength="200">
+      <textarea id="fnote" class="t" rows="2" data-p="note" maxlength="200"></textarea>
+      <label class="pay"><input type="radio" name="pay" value="cash" checked><span data-i="cash"></span></label>
+      <label class="pay"><input type="radio" name="pay" value="card"><span data-i="card"></span></label>
     </div>
-    <button id="order" class="btn">Buyurtma berish</button>
+    <button id="order" class="btn"></button>
   </div>
 </div>
 <div id="toast"></div>
 
 <script>
-const tg = window.Telegram && window.Telegram.WebApp, $ = s => document.querySelector(s);
+const tg = window.Telegram && window.Telegram.WebApp, $ = s => document.querySelector(s), $$ = s => document.querySelectorAll(s);
 const fmt = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let C = {products: [], categories: []}, cat = 'Hammasi', cart = [], cur = null, pick = {}, tt;
+const T = {
+  uz: {shop: "Do'kon", all: 'Hammasi', search: 'Qidirish...', s_def: 'Odatiy', s_asc: 'Arzonroq', s_desc: 'Qimmatroq',
+    promo: "🚚 {n} so'mdan yuqori buyurtmalarda yetkazib berish bepul", cur: "so'm", size: "O'lcham", color: 'Rang',
+    add: "Savatga qo'shish", pick_size: "O'lchamni tanlang", pick_color: 'Rangni tanlang', added: "Savatga qo'shildi ✅",
+    cart: 'Savat', empty: "Savat bo'sh.", sub: 'Mahsulotlar', deliv: 'Yetkazib berish', free: 'Bepul', total: 'Jami',
+    name: 'Ismingiz', addr: "Manzil (shahar, ko'cha, uy)", note: 'Izoh (ixtiyoriy)', cash: '💵 Naqd (yetkazganda)',
+    card: "💳 Kartaga o'tkazma (chek yuborasiz)", order: 'Buyurtma berish', fill: "Ism, telefon va manzilni to'ldiring",
+    outside: "Buyurtma berish uchun do'konni Telegram ichida oching.", none: "Mahsulot yo'q.", sold: 'Tugadi', new: 'Yangi',
+    soldmsg: 'Bu mahsulot hozir tugagan', fail: 'Katalog yuklanmadi'},
+  ru: {shop: 'Магазин', all: 'Все', search: 'Поиск...', s_def: 'По умолчанию', s_asc: 'Дешёвые', s_desc: 'Дорогие',
+    promo: '🚚 Бесплатная доставка при заказе от {n} сум', cur: 'сум', size: 'Размер', color: 'Цвет',
+    add: 'В корзину', pick_size: 'Выберите размер', pick_color: 'Выберите цвет', added: 'Добавлено в корзину ✅',
+    cart: 'Корзина', empty: 'Корзина пуста.', sub: 'Товары', deliv: 'Доставка', free: 'Бесплатно', total: 'Итого',
+    name: 'Ваше имя', addr: 'Адрес (город, улица, дом)', note: 'Комментарий (необязательно)', cash: '💵 Наличные при получении',
+    card: '💳 Перевод на карту (пришлёте чек)', order: 'Оформить заказ', fill: 'Заполните имя, телефон и адрес',
+    outside: 'Для заказа откройте магазин внутри Telegram.', none: 'Нет товаров.', sold: 'Нет в наличии', new: 'Новинка',
+    soldmsg: 'Этот товар сейчас закончился', fail: 'Не удалось загрузить каталог'}
+};
+let C = {products: [], categories: []}, cat = 'Hammasi', cart = [], cur = null, pick = {}, tt, lang = 'uz';
+const store = {get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} }};
+const t = k => T[lang][k] || T.uz[k] || k;
+const L = (o, k) => lang === 'ru' && o[k + '_ru'] ? o[k + '_ru'] : o[k];
+const P = id => C.products.find(p => p.id === id);
+const lv = (p, k, v) => { const i = (p[k] || []).indexOf(v); return lang === 'ru' && p[k + '_ru'] && p[k + '_ru'][i] ? p[k + '_ru'][i] : v; };
+const catLabel = c => c === 'Hammasi' ? t('all') : (lang === 'ru' && C.categories_ru && C.categories_ru[C.categories.indexOf(c)]) || c;
+const priceHtml = p => `${fmt(p.price)} ${t('cur')}${p.old_price ? ` <s>${fmt(p.old_price)}</s>` : ''}`;
+const tag = p => p.soldout ? `<span class="tag dk">${t('sold')}</span>` : p.old_price ? `<span class="tag ac">-${Math.round((1 - p.price / p.old_price) * 100)}%</span>` : p.badge === 'new' ? `<span class="tag">${t('new')}</span>` : '';
+const pic = (p, big) => `<div class="pic${big ? ' big' : ''}">${big ? '' : tag(p)}${p.img ? `<img src="${esc(p.img)}" alt="">` : esc(p.emoji || '🛍')}</div>`;
 
-function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 2600); }
+function toast(m) { const e = $('#toast'); e.textContent = m; e.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => e.classList.remove('show'), 2600); }
+function saveCart() { store.set('cart', JSON.stringify(cart)); }
 function totals() {
-  const sub = cart.reduce((a, i) => a + i.price * i.qty, 0), d = C.delivery || {};
+  const sub = cart.reduce((a, i) => a + P(i.id).price * i.qty, 0), d = C.delivery || {};
   const fee = sub < (d.free_from || 0) ? (d.fee || 0) : 0;
   return {sub, fee, total: sub + fee};
 }
 function drawCats() {
-  $('#cats').innerHTML = ['Hammasi', ...(C.categories || [])].map(c => `<button class="chip${c === cat ? ' on' : ''}" data-c="${esc(c)}">${esc(c)}</button>`).join('');
+  $('#cats').innerHTML = ['Hammasi', ...(C.categories || [])].map(c => `<button class="chip${c === cat ? ' on' : ''}" data-c="${esc(c)}">${esc(catLabel(c))}</button>`).join('');
 }
 function drawGrid() {
-  const list = C.products.filter(p => cat === 'Hammasi' || p.cat === cat);
-  $('#grid').innerHTML = list.map(p => `<div class="pc" data-id="${esc(p.id)}"><div class="pic">${p.img ? `<img src="${esc(p.img)}" alt="">` : esc(p.emoji || '🛍')}</div><b>${esc(p.name)}</b><span>${fmt(p.price)} so'm</span></div>`).join('') || '<p class="muted">Mahsulot yo\'q.</p>';
+  const q = $('#q').value.trim().toLowerCase(), s = $('#sort').value;
+  let list = C.products.filter(p => (cat === 'Hammasi' || p.cat === cat) && (!q || (p.name + ' ' + (p.name_ru || '')).toLowerCase().includes(q)));
+  if (s !== 'def') list = [...list].sort((a, b) => s === 'asc' ? a.price - b.price : b.price - a.price);
+  $('#grid').innerHTML = list.map(p => `<div class="pc${p.soldout ? ' so' : ''}" data-id="${esc(p.id)}">${pic(p)}<b>${esc(L(p, 'name'))}</b><span>${priceHtml(p)}</span></div>`).join('') || `<p class="muted">${t('none')}</p>`;
 }
 function drawSheet() {
   const p = cur;
-  const opt = (k, arr, label) => arr && arr.length ? `<label class="l">${label}</label><div class="chips wrap">${arr.map(v => `<button class="chip${pick[k] === v ? ' on' : ''}" data-k="${k}" data-v="${esc(v)}">${esc(v)}</button>`).join('')}</div>` : '';
-  $('#sh').innerHTML = `<div class="pic big">${p.img ? `<img src="${esc(p.img)}" alt="">` : esc(p.emoji || '🛍')}</div><h2>${esc(p.name)}</h2><p class="muted">${esc(p.desc || '')}</p><div class="price">${fmt(p.price)} so'm</div>${opt('size', p.sizes, "O'lcham")}${opt('color', p.colors, 'Rang')}<div class="qty"><button data-q="-1">−</button><b>${pick.qty}</b><button data-q="1">+</button></div><button class="btn" id="addc">Savatga qo'shish · ${fmt(p.price * pick.qty)} so'm</button>`;
+  const opt = (k, arr, label) => arr && arr.length ? `<label class="l">${label}</label><div class="chips wrap">${arr.map(v => `<button class="chip${pick[k] === v ? ' on' : ''}" data-k="${k}" data-v="${esc(v)}">${esc(k === 'color' ? lv(p, 'colors', v) : v)}</button>`).join('')}</div>` : '';
+  $('#sh').innerHTML = `${pic(p, 1)}<h2>${esc(L(p, 'name'))}</h2><p class="muted">${esc(L(p, 'desc') || '')}</p><div class="price">${priceHtml(p)}</div>${opt('size', p.sizes, t('size'))}${opt('color', p.colors, t('color'))}<div class="qty"><button data-q="-1">−</button><b>${pick.qty}</b><button data-q="1">+</button></div><button class="btn" id="addc">${t('add')} · ${fmt(p.price * pick.qty)} ${t('cur')}</button>`;
 }
 function drawCart() {
-  const n = cart.reduce((a, i) => a + i.qty, 0), t = totals();
+  const n = cart.reduce((a, i) => a + i.qty, 0), tt2 = totals();
   $('#cnt').textContent = n; $('#cnt').hidden = !n;
   $('#form').hidden = !cart.length;
-  $('#items').innerHTML = cart.length ? cart.map((i, x) => `<div class="it"><span class="e">${esc(i.emoji || '🛍')}</span><div class="n">${esc(i.name)}<small>${esc([i.size, i.color].filter(Boolean).join(' / '))} · ${fmt(i.price)} so'm</small></div><div class="qty"><button data-x="${x}" data-d="-1">−</button><b>${i.qty}</b><button data-x="${x}" data-d="1">+</button></div></div>`).join('') : '<p class="muted">Savat bo\'sh.</p>';
-  $('#tot').innerHTML = `<div class="tr"><span>Mahsulotlar</span><span>${fmt(t.sub)} so'm</span></div><div class="tr"><span>Yetkazib berish</span><span class="${t.fee ? '' : 'free'}">${t.fee ? fmt(t.fee) + " so'm" : 'Bepul'}</span></div><div class="tr t"><span>Jami</span><span>${fmt(t.total)} so'm</span></div>`;
-  $('#order').textContent = `Buyurtma berish · ${fmt(t.total)} so'm`;
+  $('#items').innerHTML = cart.length ? cart.map((i, x) => { const p = P(i.id); return `<div class="it"><span class="e">${esc(p.emoji || '🛍')}</span><div class="n">${esc(L(p, 'name'))}<small>${esc([i.size, i.color && lv(p, 'colors', i.color)].filter(Boolean).join(' / '))} · ${fmt(p.price)} ${t('cur')}</small></div><div class="qty"><button data-x="${x}" data-d="-1">−</button><b>${i.qty}</b><button data-x="${x}" data-d="1">+</button></div></div>`; }).join('') : `<p class="muted">${t('empty')}</p>`;
+  $('#tot').innerHTML = `<div class="tr"><span>${t('sub')}</span><span>${fmt(tt2.sub)} ${t('cur')}</span></div><div class="tr"><span>${t('deliv')}</span><span class="${tt2.fee ? '' : 'free'}">${tt2.fee ? fmt(tt2.fee) + ' ' + t('cur') : t('free')}</span></div><div class="tr t"><span>${t('total')}</span><span>${fmt(tt2.total)} ${t('cur')}</span></div>`;
+  $('#order').textContent = `${t('order')} · ${fmt(tt2.total)} ${t('cur')}`;
+}
+function applyLang() {
+  document.documentElement.lang = lang; $('#lang').textContent = lang === 'uz' ? 'RU' : 'UZ';
+  $$('[data-i]').forEach(e => e.textContent = t(e.dataset.i));
+  $$('[data-p]').forEach(e => e.placeholder = t(e.dataset.p));
+  $('#shop').textContent = (lang === 'ru' && C.shop_ru) || C.shop || t('shop');
+  const d = C.delivery || {};
+  $('#promo').hidden = !d.free_from; if (d.free_from) $('#promo').textContent = t('promo').replace('{n}', fmt(d.free_from));
+  drawCats(); drawGrid(); drawCart(); if (!$('#sheet').hidden) drawSheet();
 }
 
+$('#lang').addEventListener('click', () => { lang = lang === 'uz' ? 'ru' : 'uz'; store.set('lang', lang); applyLang(); });
+$('#q').addEventListener('input', drawGrid);
+$('#sort').addEventListener('change', drawGrid);
 $('#cats').addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) { cat = b.dataset.c; drawCats(); drawGrid(); } });
 $('#grid').addEventListener('click', e => {
   const c = e.target.closest('.pc'); if (!c) return;
-  cur = C.products.find(p => p.id === c.dataset.id); pick = {size: '', color: '', qty: 1};
-  drawSheet(); $('#sheet').hidden = false;
+  cur = P(c.dataset.id);
+  if (cur.soldout) return toast(t('soldmsg'));
+  pick = {size: '', color: '', qty: 1}; drawSheet(); $('#sheet').hidden = false;
 });
 $('#sheet').addEventListener('click', e => {
   if (e.target.id === 'sheet') { $('#sheet').hidden = true; return; }
   const ch = e.target.closest('[data-k]'); if (ch) { pick[ch.dataset.k] = ch.dataset.v; drawSheet(); return; }
   const q = e.target.closest('[data-q]'); if (q) { pick.qty = Math.min(10, Math.max(1, pick.qty + +q.dataset.q)); drawSheet(); return; }
   if (e.target.id !== 'addc') return;
-  if (cur.sizes && cur.sizes.length && !pick.size) return toast("O'lchamni tanlang");
-  if (cur.colors && cur.colors.length && !pick.color) return toast('Rangni tanlang');
+  if (cur.sizes && cur.sizes.length && !pick.size) return toast(t('pick_size'));
+  if (cur.colors && cur.colors.length && !pick.color) return toast(t('pick_color'));
   const ex = cart.find(i => i.id === cur.id && i.size === pick.size && i.color === pick.color);
   if (ex) ex.qty = Math.min(10, ex.qty + pick.qty);
-  else cart.push({id: cur.id, name: cur.name, price: cur.price, emoji: cur.emoji, size: pick.size, color: pick.color, qty: pick.qty});
-  $('#sheet').hidden = true; drawCart(); toast("Savatga qo'shildi ✅");
+  else cart.push({id: cur.id, size: pick.size, color: pick.color, qty: pick.qty});
+  saveCart(); $('#sheet').hidden = true; drawCart(); toast(t('added'));
 });
 $('#cartb').addEventListener('click', () => { drawCart(); $('#cart').hidden = false; });
 $('#back').addEventListener('click', () => { $('#cart').hidden = true; });
@@ -135,24 +187,28 @@ $('#items').addEventListener('click', e => {
   const b = e.target.closest('[data-x]'); if (!b) return;
   const i = cart[+b.dataset.x]; i.qty = Math.min(10, i.qty + +b.dataset.d);
   if (i.qty < 1) cart.splice(+b.dataset.x, 1);
-  drawCart();
+  saveCart(); drawCart();
 });
 $('#order').addEventListener('click', () => {
   const name = $('#fn').value.trim(), phone = $('#fp').value.trim(), address = $('#fa').value.trim();
-  if (!name || phone.replace(/\D/g, '').length < 9 || !address) return toast("Ism, telefon va manzilni to'ldiring");
+  if (!name || phone.replace(/\D/g, '').length < 9 || !address) return toast(t('fill'));
+  store.set('info', JSON.stringify({name, phone, address}));
   const o = {a: 'order', name, phone, address, note: $('#fnote').value.trim(), pay: document.querySelector('input[name=pay]:checked').value,
     items: cart.map(i => ({id: i.id, size: i.size, color: i.color, qty: i.qty}))};
-  if (tg && tg.sendData && tg.platform && tg.platform !== 'unknown') tg.sendData(JSON.stringify(o));
-  else toast('Buyurtma berish uchun do\'konni Telegram ichida oching.');
+  if (tg && tg.sendData && tg.platform && tg.platform !== 'unknown') { tg.sendData(JSON.stringify(o)); store.set('cart', '[]'); }
+  else toast(t('outside'));
 });
 
 (async function init() {
-  if (tg) { tg.ready(); tg.expand(); try { tg.setHeaderColor('#ffffff'); tg.setBackgroundColor('#ffffff'); const u = tg.initDataUnsafe.user; if (u) $('#fn').value = [u.first_name, u.last_name].filter(Boolean).join(' '); } catch (e) {} }
-  try { C = await (await fetch('products.json?' + Date.now())).json(); } catch (e) { toast('Katalog yuklanmadi'); }
-  $('#shop').textContent = C.shop || "Do'kon";
-  const d = C.delivery || {};
-  if (d.free_from) { $('#promo').textContent = `🚚 ${fmt(d.free_from)} so'mdan yuqori buyurtmalarda yetkazib berish bepul`; $('#promo').hidden = false; }
-  drawCats(); drawGrid(); drawCart();
+  const tgUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
+  lang = store.get('lang') || (tgUser && tgUser.language_code === 'ru' ? 'ru' : 'uz');
+  if (tg) { tg.ready(); tg.expand(); try { tg.setHeaderColor('#ffffff'); tg.setBackgroundColor('#ffffff'); } catch (e) {} }
+  try { C = await (await fetch('products.json?' + Date.now())).json(); } catch (e) { toast(t('fail')); }
+  try { cart = JSON.parse(store.get('cart') || '[]').filter(i => P(i.id) && !P(i.id).soldout); } catch (e) { cart = []; }
+  let info = {}; try { info = JSON.parse(store.get('info') || '{}'); } catch (e) {}
+  $('#fn').value = info.name || (tgUser ? [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ') : '');
+  $('#fp').value = info.phone || ''; $('#fa').value = info.address || '';
+  applyLang();
 })();
 </script>
 </body>

@@ -1,15 +1,17 @@
 {
   "shop": "Moda Do'kon",
+  "shop_ru": "Магазин Moda",
   "delivery": {"fee": 20000, "free_from": 300000},
   "categories": ["Kiyim", "Oyoq kiyim"],
+  "categories_ru": ["Одежда", "Обувь"],
   "products": [
-    {"id": "p1", "name": "Oversize futbolka", "cat": "Kiyim", "price": 120000, "emoji": "👕", "sizes": ["S", "M", "L", "XL"], "colors": ["Qora", "Oq", "Yashil"], "desc": "Yumshoq paxta, erkin kesim."},
-    {"id": "p2", "name": "Kapyushonli hudi", "cat": "Kiyim", "price": 220000, "emoji": "🧥", "sizes": ["S", "M", "L", "XL"], "colors": ["Qora", "Kulrang"], "desc": "Issiq va qulay, kundalik kiyim."},
-    {"id": "p3", "name": "Klassik jinsi shim", "cat": "Kiyim", "price": 260000, "emoji": "👖", "sizes": ["28", "30", "32", "34"], "colors": ["Ko'k", "Qora"], "desc": "To'g'ri kesim, mustahkam mato."},
-    {"id": "p4", "name": "Qishki kurtka", "cat": "Kiyim", "price": 690000, "emoji": "🧥", "sizes": ["M", "L", "XL"], "colors": ["Qora", "Xaki"], "desc": "Sovuqqa chidamli, suv o'tkazmaydi."},
-    {"id": "p5", "name": "Sport krossovka", "cat": "Oyoq kiyim", "price": 480000, "emoji": "👟", "sizes": ["39", "40", "41", "42", "43"], "colors": ["Oq", "Qora"], "desc": "Yengil va qulay, har kuni kiyishga."},
-    {"id": "p6", "name": "Charm tufli", "cat": "Oyoq kiyim", "price": 550000, "emoji": "👞", "sizes": ["40", "41", "42", "43"], "colors": ["Qora", "Jigarrang"], "desc": "Klassik uslub, tabiiy charm."},
-    {"id": "p7", "name": "Qishki botinka", "cat": "Oyoq kiyim", "price": 620000, "emoji": "🥾", "sizes": ["40", "41", "42", "43"], "colors": ["Qora", "Jigarrang"], "desc": "Issiq astarli, sirpanmaydigan taglik."},
-    {"id": "p8", "name": "Yozgi shippak", "cat": "Oyoq kiyim", "price": 90000, "emoji": "🩴", "sizes": ["39", "40", "41", "42"], "colors": ["Qora", "Ko'k"], "desc": "Yengil, uy va plyaj uchun."}
+    {"id": "p1", "name": "Oversize futbolka", "name_ru": "Футболка оверсайз", "cat": "Kiyim", "price": 120000, "badge": "new", "emoji": "👕", "sizes": ["S", "M", "L", "XL"], "colors": ["Qora", "Oq", "Yashil"], "colors_ru": ["Чёрный", "Белый", "Зелёный"], "desc": "Yumshoq paxta, erkin kesim.", "desc_ru": "Мягкий хлопок, свободный крой."},
+    {"id": "p2", "name": "Kapyushonli hudi", "name_ru": "Худи с капюшоном", "cat": "Kiyim", "price": 220000, "old_price": 260000, "emoji": "🧥", "sizes": ["S", "M", "L", "XL"], "colors": ["Qora", "Kulrang"], "colors_ru": ["Чёрный", "Серый"], "desc": "Issiq va qulay, kundalik kiyim.", "desc_ru": "Тёплое и удобное, на каждый день."},
+    {"id": "p3", "name": "Klassik jinsi shim", "name_ru": "Классические джинсы", "cat": "Kiyim", "price": 260000, "emoji": "👖", "sizes": ["28", "30", "32", "34"], "colors": ["Ko'k", "Qora"], "colors_ru": ["Синий", "Чёрный"], "desc": "To'g'ri kesim, mustahkam mato.", "desc_ru": "Прямой крой, плотная ткань."},
+    {"id": "p4", "name": "Qishki kurtka", "name_ru": "Зимняя куртка", "cat": "Kiyim", "price": 590000, "old_price": 690000, "emoji": "🧥", "sizes": ["M", "L", "XL"], "colors": ["Qora", "Xaki"], "colors_ru": ["Чёрный", "Хаки"], "desc": "Sovuqqa chidamli, suv o'tkazmaydi.", "desc_ru": "Морозостойкая, не промокает."},
+    {"id": "p5", "name": "Sport krossovka", "name_ru": "Спортивные кроссовки", "cat": "Oyoq kiyim", "price": 480000, "badge": "new", "emoji": "👟", "sizes": ["39", "40", "41", "42", "43"], "colors": ["Oq", "Qora"], "colors_ru": ["Белый", "Чёрный"], "desc": "Yengil va qulay, har kuni kiyishga.", "desc_ru": "Лёгкие и удобные, на каждый день."},
+    {"id": "p6", "name": "Charm tufli", "name_ru": "Кожаные туфли", "cat": "Oyoq kiyim", "price": 550000, "emoji": "👞", "sizes": ["40", "41", "42", "43"], "colors": ["Qora", "Jigarrang"], "colors_ru": ["Чёрный", "Коричневый"], "desc": "Klassik uslub, tabiiy charm.", "desc_ru": "Классический стиль, натуральная кожа."},
+    {"id": "p7", "name": "Qishki botinka", "name_ru": "Зимние ботинки", "cat": "Oyoq kiyim", "price": 620000, "soldout": true, "emoji": "🥾", "sizes": ["40", "41", "42", "43"], "colors": ["Qora", "Jigarrang"], "colors_ru": ["Чёрный", "Коричневый"], "desc": "Issiq astarli, sirpanmaydigan taglik.", "desc_ru": "Тёплая подкладка, нескользящая подошва."},
+    {"id": "p8", "name": "Yozgi shippak", "name_ru": "Летние шлёпанцы", "cat": "Oyoq kiyim", "price": 90000, "emoji": "🩴", "sizes": ["39", "40", "41", "42"], "colors": ["Qora", "Ko'k"], "colors_ru": ["Чёрный", "Синий"], "desc": "Yengil, uy va plyaj uchun.", "desc_ru": "Лёгкие, для дома и пляжа."}
   ]
 }
